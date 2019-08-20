@@ -18,6 +18,7 @@ export default function createStore(model, options = {}) {
     middleware = [],
     mockActions = false,
     name: storeName = `EasyPeasyStore`,
+    preMiddleware = [],
     reducerEnhancer = rootReducer => rootReducer,
   } = options;
 
@@ -81,6 +82,7 @@ export default function createStore(model, options = {}) {
   };
 
   const easyPeasyMiddleware = [
+    ...preMiddleware,
     computedPropertiesMiddleware,
     reduxThunk,
     ...middleware,
